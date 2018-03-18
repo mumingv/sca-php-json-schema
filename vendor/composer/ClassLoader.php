@@ -348,6 +348,7 @@ class ClassLoader
             }
         }
 
+        // 对于类"JsonSchema\Validator"，在这里返回。
         $file = $this->findFileWithExtension($class, '.php');
 
         // Search for Hack files if we are running on HHVM
@@ -364,6 +365,7 @@ class ClassLoader
             $this->missingClasses[$class] = true;
         }
 
+        // 对于类"JsonSchema\Validator"，在这里返回。
         return $file;
     }
 
@@ -382,6 +384,9 @@ class ClassLoader
                     $pathEnd = DIRECTORY_SEPARATOR . substr($logicalPathPsr4, $lastPos + 1);
                     foreach ($this->prefixDirsPsr4[$search] as $dir) {
                         if (file_exists($file = $dir . $pathEnd)) {
+                            // 对于类"JsonSchema\Validator", 在这里被找到。
+                            // $pathEnd为：Validator.php。
+                            // $file路径为：/Users/muming/Sites/sca-php-json-schema/vendor/composer/../justinrainbow/json-schema/src/JsonSchema/Validator.php
                             return $file;
                         }
                     }
