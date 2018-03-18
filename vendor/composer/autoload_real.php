@@ -36,6 +36,7 @@ class ComposerAutoloaderInita2db082e84a366331a9c156d816341ef
         if ($useStaticLoader) {
             require_once __DIR__ . '/autoload_static.php';
 
+            // 给$loader的属性赋值 @by mumingv
             call_user_func(\Composer\Autoload\ComposerStaticInita2db082e84a366331a9c156d816341ef::getInitializer($loader));
         } else {
             $map = require __DIR__ . '/autoload_namespaces.php';
@@ -54,6 +55,7 @@ class ComposerAutoloaderInita2db082e84a366331a9c156d816341ef
             }
         }
 
+        // 注册自动加载类的方法 @by mumingv
         $loader->register(true);
 
         return $loader;
