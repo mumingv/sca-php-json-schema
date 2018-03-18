@@ -19,11 +19,20 @@ class ComposerAutoloaderInita2db082e84a366331a9c156d816341ef
             return self::$loader;
         }
 
+        // spl_autoload_register代替了__autoload，用于注册自动加载函数。
+        // 在遇到使用不认识的类名时会使用这里注册的函数loadClassLoader，进行类的自动加载。
+        // 说明：第一个参数是个数组，数组的元素分别是类名和函数名。
         spl_autoload_register(array('ComposerAutoloaderInita2db082e84a366331a9c156d816341ef', 'loadClassLoader'), true, true);
+
+        // 这里使用的类名不管是否携带最前面的'\'，loadClassLoader函数接收到的参数都是'Composer\Autoload\ClassLoader'。
         self::$loader = $loader = new \Composer\Autoload\ClassLoader();
+
+        // 注销已注册的__autoload()函数loadClassLoader。
         spl_autoload_unregister(array('ComposerAutoloaderInita2db082e84a366331a9c156d816341ef', 'loadClassLoader'));
 
         $useStaticLoader = PHP_VERSION_ID >= 50600 && !defined('HHVM_VERSION') && (!function_exists('zend_loader_file_encoded') || !zend_loader_file_encoded());
+
+        // $useStaticLoader == true, by @mumingv
         if ($useStaticLoader) {
             require_once __DIR__ . '/autoload_static.php';
 
