@@ -52,6 +52,7 @@ class TypeConstraint extends Constraint
 
             return;
         } else {
+            // 进入这里 @by mumingv
             $isValid = $this->validateType($value, $type);
         }
 

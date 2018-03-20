@@ -45,6 +45,7 @@ class SchemaConstraint extends Constraint
             $validationSchema = BaseConstraint::arrayToObjectRecursive($validationSchema);
         }
 
+        // 默认会跳过这里
         // validate schema against whatever is defined in $validationSchema->$schema. If no
         // schema is defined, assume self::DEFAULT_SCHEMA_SPEC (currently draft-04).
         if ($this->factory->getConfig(self::CHECK_MODE_VALIDATE_SCHEMA)) {
@@ -88,6 +89,7 @@ class SchemaConstraint extends Constraint
             $this->factory->setErrorContext($initialContext);
         }
 
+        // 默认会直接在这里进行检查
         // validate element against $validationSchema
         $this->checkUndefined($element, $validationSchema, $path, $i);
     }

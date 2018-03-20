@@ -107,6 +107,7 @@ class UndefinedConstraint extends Constraint
      */
     protected function validateCommonProperties(&$value, $schema = null, JsonPointer $path, $i = '')
     {
+        // 不涉及，跳过   @by mumingv
         // if it extends another schema, it must pass that schema as well
         if (isset($schema->extends)) {
             if (is_string($schema->extends)) {
@@ -123,6 +124,7 @@ class UndefinedConstraint extends Constraint
 
         // Apply default values from schema
         if (!$path->fromDefault()) {
+            // 申请一个默认值
             $this->applyDefaultValues($value, $schema, $path);
         }
 
@@ -153,8 +155,10 @@ class UndefinedConstraint extends Constraint
             }
         }
 
+        // 进入这里处理
         // Verify type
         if (!($value instanceof self)) {
+            // 
             $this->checkType($value, $schema, $path, $i);
         }
 

@@ -9,6 +9,7 @@
 
 namespace JsonSchema;
 
+// 使用use引入已定义的类，简化类名称（在该文件中可以直接使用类名）
 use JsonSchema\Constraints\BaseConstraint;
 use JsonSchema\Constraints\Constraint;
 
@@ -46,6 +47,7 @@ class Validator extends BaseConstraint
         }
 
         // set checkMode
+        // $initialCheckMode == CHECK_MODE_NORMAL(0x00000001)   @by mumingv
         $initialCheckMode = $this->factory->getConfig();
         if ($checkMode !== null) {
             $this->factory->setConfig($checkMode);
@@ -57,6 +59,8 @@ class Validator extends BaseConstraint
         } else {
             $schemaURI = SchemaStorage::INTERNAL_PROVIDED_SCHEMA_URI;
         }
+
+        // $schemaURI == "internal://provided-schema/"  @by mumingv
         $this->factory->getSchemaStorage()->addSchema($schemaURI, $schema);
 
         $validator = $this->factory->createInstanceFor('schema');
